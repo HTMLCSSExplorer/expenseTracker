@@ -73,5 +73,6 @@ body {
 .container {
   max-width: 700px;
   margin: auto;
+  padding: 2rem;
 }
 </style>
