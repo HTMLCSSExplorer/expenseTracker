@@ -1,0 +1,27 @@
+[
+  {
+    "id": "ekjf0vrj4b",
+    "amount": 10,
+    "transactionname": "income1"
+  },
+  {
+    "id": "8si71sjaoro",
+    "amount": 20,
+    "transactionname": "income2"
+  },
+  {
+    "id": "9nik5vufmr",
+    "amount": -5,
+    "transactionname": "exp1"
+  },
+  {
+    "id": "j6du0h45ft8",
+    "amount": 2,
+    "transactionname": "exp2"
+  },
+  {
+    "id": "9sh133ic5j8",
+    "amount": -5,
+    "transactionname": "exp3"
+  }
+]

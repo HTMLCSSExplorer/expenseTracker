@@ -1,21 +1,42 @@
 <template>
   <div class="transaction">
     <h2>Add new transaction</h2>
-    <form action="">
+    <form action="" @submit.prevent="submitFormData">
       <div class="form-control">
         <label for="">Text</label>
-        <input type="text" placeholder="enter text" />
+        <input
+          type="text"
+          placeholder="enter text"
+          v-model="data.transactionName"
+        />
       </div>
       <div class="form-control">
         <label for="">Amount (negative - expense, positive - income)</label>
-        <input type="number" placeholder="enter amount" />
+        <input type="number" placeholder="enter amount" v-model="data.amount" />
       </div>
       <button>add transaction</button>
     </form>
+    <button @click.prevent="clearAll">CLEAT ALL</button>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { reactive } from 'vue';
+const emit = defineEmits(['submitTransactionData','clearAll']);
+const data = reactive({
+  amount: null,
+  transactionName: null,
+});
+
+const submitFormData = () => {
+  emit('submitTransactionData', data.amount, data.transactionName);
+  (data.amount = ''), (data.transactionName = '');
+};
+const clearAll = () => {
+  emit('clearAll')
+  
+}
+</script>
 
 <style scoped>
 .transaction {
@@ -57,6 +78,7 @@ button {
   font-size: 2rem;
   cursor: pointer;
   transition: all 0.1s;
+  margin-block: 2rem;
   &:hover {
     scale: 1.02;
   }

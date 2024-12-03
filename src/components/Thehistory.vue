@@ -1,16 +1,28 @@
 <template>
   <div class="history">
     <h2>history</h2>
-    <ul class="list">
+    <ul class="list" v-for="data in receivedData" :key="data.id">
       <li>
-        <span class="fas fa-x btn-x"></span>
-        item <span class="price"> $100</span> <span class="led led-red"></span>
+        <span class="fas fa-x btn-x" @click="removeItem(data.id)"></span>
+        {{ data.transactionname }}
+        <span class="price"> $ {{ data.amount }}</span>
+        <span
+          class="led"
+          :class="data.amount > 0 ? 'led-green' : 'led-red'"
+        ></span>
       </li>
     </ul>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { inject } from 'vue';
+const emit = defineEmits(['removeList']);
+const receivedData = inject('tData');
+const removeItem = (id) => {
+  emit('removeList', id);
+};
+</script>
 
 <style scoped>
 .history {

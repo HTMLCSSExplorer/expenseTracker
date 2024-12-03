@@ -1,22 +1,47 @@
 <template>
   <div class="balance">
     <h2>your balance</h2>
-    <p>$240</p>
+    <p>${{ totalIncome + totalExpenses }}</p>
   </div>
   <div class="card">
     <div class="card-child">
       <h3>income</h3>
-      <p>$0.00</p>
+      <p>${{ totalIncome }}</p>
     </div>
     <div class="border"></div>
     <div class="card-child">
       <h3>Expense</h3>
-      <p>$0.00</p>
+      <p>${{ totalExpenses }}</p>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { computed, inject, ref,watch } from 'vue';
+const expenses = ref([]);
+const incomes = ref([]);
+const receveidData = inject('tData');
+
+incomes.value = receveidData.value.filter((item) => item.amount > 0);
+expenses.value = receveidData.value.filter((item) => item.amount < 0);
+
+watch(
+  () => receveidData.value,
+  (newData) => {
+    incomes.value = newData.filter((item) => item.amount > 0);
+    expenses.value = newData.filter((item) => item.amount < 0);
+  },
+  { immediate: true } // Run the watcher immediately
+);
+
+const totalIncome = computed(() => {
+ return  incomes.value.reduce((sum, acc) => sum + acc.amount, 0);
+});
+
+const totalExpenses = computed(() => {
+ return  expenses.value.reduce((sum, acc) => sum + acc.amount, 0);
+});
+</script>
 
 <style scoped>
 .balance {
