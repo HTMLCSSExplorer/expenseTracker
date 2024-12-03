@@ -43,7 +43,7 @@ const clearAll = () => {
   margin-top: 5rem;
 }
 h2 {
-  font-size: 3rem;
+  font-size: 1.5rem;
   border-bottom: 1px solid black;
 }
 .form-control {
@@ -52,7 +52,7 @@ h2 {
   flex-direction: column;
   margin-block: 3rem;
   label {
-    font-size: 3rem;
+    font-size: 1.5rem;
   }
   input {
     border: 0;
